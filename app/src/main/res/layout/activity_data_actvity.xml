@@ -4,7 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="spencerstudios.com.codespace.DataActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:background="@color/colorPrimary">
+
+        <Button
+            android:id="@+id/btn_contribute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="@android:color/transparent"
+            android:text="Contribute"
+            android:onClick="click"
+            android:textAllCaps="false"
+            android:layout_marginEnd="16dp"
+            android:textColor="#fff"/>
+
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/list_view"

@@ -1,7 +1,9 @@
 package spencerstudios.com.codespace;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -12,6 +14,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import spencerstudios.com.bungeelib.Bungee;
 
 
 public class DataActivity extends AppCompatActivity {
@@ -25,7 +29,7 @@ public class DataActivity extends AppCompatActivity {
 
         final ArrayList<Data> dataArrayList = new ArrayList<>();
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference();
         final DatabaseReference ref = myRef.child("data");
 
@@ -44,16 +48,25 @@ public class DataActivity extends AppCompatActivity {
                     String link = (String)ds.child("link").getValue();
                     long timeStamp = (long)ds.child("timeStamp").getValue();
 
-                    dataArrayList.add(new Data(title, description, contributor, link, timeStamp));
+                    dataArrayList.add(new Data(description, contributor, link, timeStamp, title));
                 }
-
                 listAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "error :(", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void click(View v){
+
+        int id = v.getId();
+
+        if (id==R.id.btn_contribute){
+            startActivity(new Intent(DataActivity.this, MainActivity.class));
+            Bungee.diagonal(DataActivity.this);
+        }
     }
 }

@@ -6,8 +6,7 @@ class Data {
     private String title, description, contributor, link;
     private long timeStamp;
 
-
-    Data(String title, String description, String contributor, String link, long timeStamp) {
+    public Data(String description, String contributor, String link, long timeStamp, String title) {
         this.title = title;
         this.description = description;
         this.contributor = contributor;
@@ -15,7 +14,7 @@ class Data {
         this.timeStamp = timeStamp;
     }
 
-    String getTitle() {
+    public String getTitle() {
         return title;
     }
 
@@ -27,31 +26,16 @@ class Data {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getContributor() {
         return contributor;
-    }
-
-    public void setContributor(String contributor) {
-        this.contributor = contributor;
     }
 
     public String getLink() {
         return link;
     }
 
-    public void setLink(String link) {
-        this.link = link;
-    }
 
     public long getTimeStamp() {
         return timeStamp;
-    }
-
-    public void setTimeStamp(long timeStamp) {
-        this.timeStamp = timeStamp;
     }
 }
