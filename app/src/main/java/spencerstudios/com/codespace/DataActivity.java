@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import spencerstudios.com.bungeelib.Bungee;
 
@@ -55,7 +56,7 @@ public class DataActivity extends AppCompatActivity {
         final ListAdapter listAdapter = new ListAdapter(DataActivity.this, dataArrayList);
         listView.setAdapter(listAdapter);
 
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.orderByChild("timeStamp").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -69,6 +70,7 @@ public class DataActivity extends AppCompatActivity {
 
                     dataArrayList.add(new Data(description, contributor, link, timeStamp, title));
                 }
+                Collections.reverse(dataArrayList);
                 listAdapter.notifyDataSetChanged();
 
                 if (swipeRefreshLayout.isRefreshing()) swipeRefreshLayout.setRefreshing(false);

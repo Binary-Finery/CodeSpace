@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         final EditText etLink = (EditText) findViewById(R.id.et_link) ;
 
         Button btnSub = (Button) findViewById(R.id.btn_submit);
-        Button btnPrev = (Button) findViewById(R.id.btn_records);
 
         btnSub.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,16 +60,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-
-
-            }
-        });
-
-        btnPrev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ReviewActivity.class));
-                Bungee.zoom(MainActivity.this);
             }
         });
     }

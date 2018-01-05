@@ -16,9 +16,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity
-            android:name=".ReviewActivity"
-            android:label="Review Submission" />
     </application>
 
 </manifest>
