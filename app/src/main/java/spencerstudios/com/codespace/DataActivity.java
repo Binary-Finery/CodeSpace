@@ -2,6 +2,7 @@ package spencerstudios.com.codespace;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ListView;
@@ -20,12 +21,30 @@ import spencerstudios.com.bungeelib.Bungee;
 
 public class DataActivity extends AppCompatActivity {
 
+    private ListView listView;
+    private SwipeRefreshLayout swipeRefreshLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_actvity);
 
-        final ListView listView = (ListView)findViewById(R.id.list_view) ;
+        if (getSupportActionBar()!=null) getSupportActionBar().setElevation(0f);
+
+        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh);
+        listView = (ListView)findViewById(R.id.list_view) ;
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchFireBaseData();
+            }
+        });
+
+        fetchFireBaseData();
+    }
+
+    private void fetchFireBaseData(){
 
         final ArrayList<Data> dataArrayList = new ArrayList<>();
 
@@ -36,7 +55,7 @@ public class DataActivity extends AppCompatActivity {
         final ListAdapter listAdapter = new ListAdapter(DataActivity.this, dataArrayList);
         listView.setAdapter(listAdapter);
 
-      ref.addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -51,6 +70,9 @@ public class DataActivity extends AppCompatActivity {
                     dataArrayList.add(new Data(description, contributor, link, timeStamp, title));
                 }
                 listAdapter.notifyDataSetChanged();
+
+                if (swipeRefreshLayout.isRefreshing()) swipeRefreshLayout.setRefreshing(false);
+
             }
 
             @Override

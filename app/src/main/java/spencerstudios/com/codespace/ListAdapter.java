@@ -60,7 +60,7 @@ class ListAdapter extends BaseAdapter {
         holder.tvTitle.setText(dataList.get(i).getTitle());
         holder.tvDescription.setText(dataList.get(i).getDescription());
         holder.tvLink.setText(dataList.get(i).getLink());
-        holder.tvContributor.setText("Contributor: " + dataList.get(i).getContributor() + "\n"
+        holder.tvContributor.setText("Contributor: " + dataList.get(i).getContributor() +", "
                 +String.valueOf(dataList.get(i).getTimeStamp()));
 
         return view;

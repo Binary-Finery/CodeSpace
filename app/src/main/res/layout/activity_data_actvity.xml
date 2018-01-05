@@ -10,29 +10,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:background="@color/colorPrimary"
         android:gravity="end"
-        android:background="@color/colorPrimary">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_contribute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:background="@android:color/transparent"
-            android:text="Contribute"
-            android:onClick="click"
-            android:textAllCaps="false"
             android:layout_marginEnd="16dp"
-            android:textColor="#fff"/>
+            android:background="@android:color/transparent"
+            android:onClick="click"
+            android:text="Contribute"
+            android:textAllCaps="false"
+            android:textColor="#fff" />
 
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/list_view"
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@null"/>
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>
