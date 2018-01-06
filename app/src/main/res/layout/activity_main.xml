@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#FFF"
+    android:orientation="vertical"
 
     android:padding="16dp"
     tools:context="spencerstudios.com.codespace.MainActivity">
@@ -13,56 +13,68 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/title_label"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    <EditText
-        android:id="@+id/et_title"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Link Title"
-        android:singleLine="true" />
+        app:counterEnabled="true"
+        app:counterMaxLength="60">
+
+        <EditText
+            android:id="@+id/et_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Title"
+            android:maxLength="80"
+            android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/descr_label"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-    <EditText
-        android:id="@+id/et_description"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Short description"
-        android:singleLine="true" />
+        app:counterEnabled="true"
+        app:counterMaxLength="150">
+
+
+        <EditText
+            android:id="@+id/et_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Short description"
+            android:maxLength="120"
+            android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/contribute_label"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="25">
 
         <EditText
-        android:id="@+id/et_contribute"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Contributor"
-        android:singleLine="true" />
+            android:id="@+id/et_contribute"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contributor"
+            android:maxLength="25"
+            android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/link_label"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="120">
 
         <EditText
             android:id="@+id/et_link"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter link"
+            android:hint="Link"
+            android:maxLength="120"
             android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
@@ -73,14 +85,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="SUBMIT"/>
-
-    <Button
-        android:id="@+id/btn_records"
-        android:text="REVIEW"
-        android:layout_width="match_parent"
-        android:layout_marginTop="16dp"
-        android:layout_height="wrap_content" />
-
-
+        android:text="PUBLISH"
+        android:textColor="#fff"
+        android:background="@color/colorPrimaryDark"
+        />
 </LinearLayout>

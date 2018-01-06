@@ -1,13 +1,19 @@
 package spencerstudios.com.codespace;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -24,10 +30,16 @@ class ListAdapter extends BaseAdapter {
     private FirebaseDatabase database;
     private DatabaseReference myRef;
 
+    private final String SAVE_LINK = "Save link to this device";
+    private final String REPORT = "Report as spam";
+
+    private Context context;
+
     ListAdapter(Context context, ArrayList<Data> dataList) {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
         this.dataList = dataList;
+        this.context = context;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -77,14 +89,44 @@ class ListAdapter extends BaseAdapter {
         holder.tvTitle.setText(dataList.get(i).getTitle());
         holder.tvDescription.setText(dataList.get(i).getDescription());
         holder.tvLink.setText(dataList.get(i).getLink());
-        holder.tvContributor.setText("contributed by " + dataList.get(i).getContributor() +",  "
-                +dateString);
+        holder.tvContributor.setText("contributed by " + dataList.get(i).getContributor() + ",  "
+                + dateString);
 
         holder.menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ReportSpam reportSpam = new ReportSpam(dataList.get(i).getTitle(), dataList.get(i).getTimeStamp());
-                myRef.child("report").push().setValue(reportSpam);
+
+                PopupMenu menu = new PopupMenu(context, view);
+                menu.getMenu().add(SAVE_LINK);
+                menu.getMenu().add(REPORT);
+
+
+                menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+
+                        if (menuItem.getTitle().equals(SAVE_LINK)) {
+
+                            Toast.makeText(context, "Saved to device!", Toast.LENGTH_SHORT).show();
+                        } else if (menuItem.getTitle().equals(REPORT)) {
+
+                            ReportSpam reportSpam = new ReportSpam(dataList.get(i).getTitle(), dataList.get(i).getContributor(), dataList.get(i).getTimeStamp());
+                            myRef.child("report").push().setValue(reportSpam).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(context, "Thank you, this contribution has successfully been reported", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(context, "Oops, something went wrong, this contribution hasn't been reported", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                        }
+                        return true;
+                    }
+                });
+                menu.show();
+
             }
         });
 

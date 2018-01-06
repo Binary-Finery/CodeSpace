@@ -3,11 +3,21 @@ package spencerstudios.com.codespace;
 class ReportSpam {
 
     private String reportTitle;
+    private String reportContributor;
     private long reportTimestamp;
 
-    ReportSpam(String reportTitle, long reportTimestamp) {
+    ReportSpam(String reportTitle, String reportContributor, long reportTimestamp) {
         this.reportTitle = reportTitle;
         this.reportTimestamp = reportTimestamp;
+        this.reportContributor = reportContributor;
+    }
+
+    public String getReportContributor() {
+        return reportContributor;
+    }
+
+    public void setReportContributor(String reportContributor) {
+        this.reportContributor = reportContributor;
     }
 
     public String getReportTitle() {
