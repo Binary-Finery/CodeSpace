@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">CodeSpace</string>
+    <string name="app_name">Link Share</string>
+    <string name="title_activity_launcher">Link Space</string>
 </resources>

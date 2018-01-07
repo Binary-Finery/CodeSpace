@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="spencerstudios.com.codespace.DataActivity">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="spencerstudios.com.codespace.LauncherActivity"
+    tools:showIn="@layout/activity_launcher">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,14 +25,12 @@
             android:background="@android:color/transparent"
             android:onClick="click"
             android:text="Contribute"
-            android:textAllCaps="false"
             android:textColor="#fff" />
 
 
     </LinearLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
