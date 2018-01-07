@@ -14,6 +14,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import spencerstudios.com.bungeelib.Bungee;
+import spencerstudios.com.fab_toast.FabToast;
+
 public class ContributeActivity extends AppCompatActivity {
 
     @Override
@@ -53,20 +56,23 @@ public class ContributeActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
-                                etContribute.setText("");
-                                etTitle.setText("");
-                                etDescription.setText("");
-                                etLink.setText("");
+                                FabToast.makeText(getApplicationContext(), "successfully published, thank you", FabToast.LENGTH_LONG, FabToast.SUCCESS, FabToast.POSITION_DEFAULT ).show();
+                                finish();
+                                Bungee.zoom(ContributeActivity.this);
                             } else {
-                                Toast.makeText(getApplicationContext(), "something went wrong there!", Toast.LENGTH_SHORT).show();
+                                FabToast.makeText(getApplicationContext(), "oops, something went wrong", FabToast.LENGTH_LONG, FabToast.ERROR, FabToast.POSITION_DEFAULT ).show();
                             }
                         }
                     });
                 } else {
-                    Toast.makeText(getApplicationContext(), "One or fields is incomplete", Toast.LENGTH_LONG).show();
+                    FabToast.makeText(getApplicationContext(), "one or more  fields is missing required information", FabToast.LENGTH_LONG, FabToast.WARNING, FabToast.POSITION_DEFAULT ).show();
                 }
             }
         });
+    }
+
+    public void onBackPressed(){
+        super.onBackPressed();
+        Bungee.zoom(ContributeActivity.this);
     }
 }

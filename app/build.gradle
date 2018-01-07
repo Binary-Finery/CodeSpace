@@ -30,6 +30,7 @@ dependencies {
     compile 'com.android.support:design:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.github.Binary-Finery:Bungee:master-SNAPSHOT'
+    compile 'com.github.Binary-Finery:FabToast:1.0'
     testCompile 'junit:junit:4.12'
 }
 
