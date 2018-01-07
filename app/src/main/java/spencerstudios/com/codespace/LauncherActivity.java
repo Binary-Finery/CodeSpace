@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import spencerstudios.com.bungeelib.Bungee;
+import spencerstudios.com.fab_toast.FabToast;
 
 
 public class LauncherActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
@@ -30,7 +31,6 @@ public class LauncherActivity extends AppCompatActivity implements SearchView.On
     private ListView listView;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ArrayList<Data> temp, dataArrayList;
-    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,12 +88,11 @@ public class LauncherActivity extends AppCompatActivity implements SearchView.On
 
                 if (swipeRefreshLayout.isRefreshing())
                     swipeRefreshLayout.setRefreshing(false);
-
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), "error :(", Toast.LENGTH_SHORT).show();
+                FabToast.makeText(getApplicationContext(), "oops, something went wrong", FabToast.LENGTH_LONG, FabToast.ERROR, FabToast.POSITION_DEFAULT ).show();
             }
         });
     }
@@ -133,7 +132,7 @@ public class LauncherActivity extends AppCompatActivity implements SearchView.On
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu, menu);
-        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setQueryHint("search...");
         searchView.setOnQueryTextListener(this);
 

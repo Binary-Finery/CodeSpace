@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import spencerstudios.com.fab_toast.FabToast;
+
 class ListAdapter extends BaseAdapter {
 
     private ArrayList<Data> dataList;
@@ -106,8 +108,7 @@ class ListAdapter extends BaseAdapter {
                     public boolean onMenuItemClick(MenuItem menuItem) {
 
                         if (menuItem.getTitle().equals(SAVE_LINK)) {
-
-                            Toast.makeText(context, "Saved to device!", Toast.LENGTH_SHORT).show();
+                            FabToast.makeText(context, "link saved to this device", FabToast.LENGTH_LONG, FabToast.SUCCESS, FabToast.POSITION_DEFAULT ).show();
                         } else if (menuItem.getTitle().equals(REPORT)) {
 
                             ReportSpam reportSpam = new ReportSpam(dataList.get(i).getTitle(), dataList.get(i).getContributor(), dataList.get(i).getTimeStamp());
@@ -115,9 +116,9 @@ class ListAdapter extends BaseAdapter {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(context, "Thank you, this contribution has successfully been reported", Toast.LENGTH_LONG).show();
+                                        FabToast.makeText(context, "thank you, this contribution has been successfully reported", FabToast.LENGTH_LONG, FabToast.SUCCESS, FabToast.POSITION_DEFAULT ).show();
                                     } else {
-                                        Toast.makeText(context, "Oops, something went wrong, this contribution hasn't been reported", Toast.LENGTH_LONG).show();
+                                        FabToast.makeText(context, "oops, something went wrong", FabToast.LENGTH_LONG, FabToast.ERROR, FabToast.POSITION_DEFAULT ).show();
                                     }
                                 }
                             });
