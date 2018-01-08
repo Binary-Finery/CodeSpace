@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Link Share</string>
     <string name="title_activity_launcher">Link Space</string>
+    <string name="title_activity_saved_links">SavedLinksActivity</string>
 </resources>
