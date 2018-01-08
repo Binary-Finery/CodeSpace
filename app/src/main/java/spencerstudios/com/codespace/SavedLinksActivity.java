@@ -1,15 +1,13 @@
 package spencerstudios.com.codespace;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import spencerstudios.com.bungeelib.Bungee;
 
 public class SavedLinksActivity extends AppCompatActivity {
 
@@ -24,5 +22,10 @@ public class SavedLinksActivity extends AppCompatActivity {
         ArrayList<SavedLinksData> links = PrefUtils.links(SavedLinksActivity.this);
         SavedAdapter adapter = new SavedAdapter(this, links);
         listView.setAdapter(adapter);
+    }
+
+    public void onBackPressed(){
+        super.onBackPressed();
+        Bungee.zoom(SavedLinksActivity.this);
     }
 }

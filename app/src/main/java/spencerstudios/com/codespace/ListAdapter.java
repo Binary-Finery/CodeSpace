@@ -108,6 +108,13 @@ class ListAdapter extends BaseAdapter {
                     public boolean onMenuItemClick(MenuItem menuItem) {
 
                         if (menuItem.getTitle().equals(SAVE_LINK)) {
+
+                            String t = dataList.get(i).getTitle();
+                            String d = dataList.get(i).getDescription();
+                            String l = dataList.get(i).getLink();
+
+                            PrefUtils.addLink(context, t, d, l);
+
                             FabToast.makeText(context, "link saved to this device", FabToast.LENGTH_LONG, FabToast.SUCCESS, FabToast.POSITION_DEFAULT ).show();
                         } else if (menuItem.getTitle().equals(REPORT)) {
 

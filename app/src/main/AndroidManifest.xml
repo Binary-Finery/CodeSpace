@@ -24,8 +24,8 @@
         </activity>
         <activity
             android:name=".SavedLinksActivity"
-            android:label="@string/title_activity_saved_links"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="Saved Links"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

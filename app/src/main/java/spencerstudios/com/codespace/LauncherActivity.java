@@ -11,7 +11,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -104,6 +103,9 @@ public class LauncherActivity extends AppCompatActivity implements SearchView.On
         if (id==R.id.btn_contribute){
             startActivity(new Intent(LauncherActivity.this, ContributeActivity.class));
             Bungee.diagonal(LauncherActivity.this);
+        }else{
+            startActivity(new Intent(LauncherActivity.this, SavedLinksActivity.class));
+            Bungee.diagonal(LauncherActivity.this);
         }
     }
 
@@ -115,7 +117,6 @@ public class LauncherActivity extends AppCompatActivity implements SearchView.On
 
     @Override
     public boolean onQueryTextChange(String query) {
-
         temp.clear();
         for (int i = 0 ; i < dataArrayList.size() ; i++){
             if (dataArrayList.get(i).getTitle().toLowerCase().contains(query.toLowerCase())){
@@ -123,8 +124,6 @@ public class LauncherActivity extends AppCompatActivity implements SearchView.On
             }
         }
         listView.setAdapter(new ListAdapter(LauncherActivity.this, temp));
-
-
         return false;
     }
 
@@ -143,10 +142,7 @@ public class LauncherActivity extends AppCompatActivity implements SearchView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_search) {
-
-            return true;
-        }
+        if (id == R.id.action_search) {return true;}
         return super.onOptionsItemSelected(item);
     }
 }
