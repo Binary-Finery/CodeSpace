@@ -1,7 +1,10 @@
 package spencerstudios.com.codespace;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,8 +35,9 @@ class ListAdapter extends BaseAdapter {
     private FirebaseDatabase database;
     private DatabaseReference myRef;
 
-    private final String SAVE_LINK = "Save link to this device";
+    private final String SAVE_LINK = "Save to this device";
     private final String REPORT = "Report as spam";
+    private final String SHARE = "Share link";
 
     private Context context;
 
@@ -100,6 +104,7 @@ class ListAdapter extends BaseAdapter {
 
                 PopupMenu menu = new PopupMenu(context, view);
                 menu.getMenu().add(SAVE_LINK);
+                menu.getMenu().add(SHARE);
                 menu.getMenu().add(REPORT);
 
 
@@ -115,20 +120,52 @@ class ListAdapter extends BaseAdapter {
 
                             PrefUtils.addLink(context, t, d, l);
 
-                            FabToast.makeText(context, "link saved to this device", FabToast.LENGTH_LONG, FabToast.SUCCESS, FabToast.POSITION_DEFAULT ).show();
+                            FabToast.makeText(context, "link saved to this device", FabToast.LENGTH_LONG, FabToast.SUCCESS, FabToast.POSITION_DEFAULT).show();
                         } else if (menuItem.getTitle().equals(REPORT)) {
 
-                            ReportSpam reportSpam = new ReportSpam(dataList.get(i).getTitle(), dataList.get(i).getContributor(), dataList.get(i).getTimeStamp());
-                            myRef.child("report").push().setValue(reportSpam).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            final String c = dataList.get(i).getContributor();
+                            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                            final String d = formatter.format(new Date(dataList.get(i).getTimeStamp()));
+
+                            final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+                            alertDialog.setTitle("Report As Spam");
+                            alertDialog.setMessage("Report this contribution by " + c + " that was submitted on "+d +", are you sure?");
+
+                            alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Yes, Report", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        FabToast.makeText(context, "thank you, this contribution has been successfully reported", FabToast.LENGTH_LONG, FabToast.SUCCESS, FabToast.POSITION_DEFAULT ).show();
-                                    } else {
-                                        FabToast.makeText(context, "oops, something went wrong", FabToast.LENGTH_LONG, FabToast.ERROR, FabToast.POSITION_DEFAULT ).show();
-                                    }
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+
+                                    ReportSpam reportSpam = new ReportSpam(dataList.get(i).getTitle(), dataList.get(i).getContributor(), dataList.get(i).getTimeStamp());
+                                    myRef.child("report").push().setValue(reportSpam).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                FabToast.makeText(context, "thank you, this contribution has been successfully reported", FabToast.LENGTH_LONG, FabToast.SUCCESS, FabToast.POSITION_DEFAULT).show();
+                                            } else {
+                                                FabToast.makeText(context, "oops, something went wrong", FabToast.LENGTH_LONG, FabToast.ERROR, FabToast.POSITION_DEFAULT).show();
+                                            }
+                                        }
+                                    });
                                 }
                             });
+
+                            alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    alertDialog.dismiss();
+                                }
+                            });
+
+                            alertDialog.show();
+
+
+                        }else if (menuItem.getTitle().equals(SHARE)){
+                            Intent sendIntent = new Intent();
+                            sendIntent.setAction(Intent.ACTION_SEND);
+                            sendIntent.putExtra(Intent.EXTRA_TEXT, dataList.get(i).getLink());
+                            sendIntent.setType("text/plain");
+                            context.startActivity(sendIntent);
                         }
                         return true;
                     }
