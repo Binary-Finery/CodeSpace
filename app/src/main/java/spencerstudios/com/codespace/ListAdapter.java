@@ -133,7 +133,7 @@ class ListAdapter extends BaseAdapter {
 
                             alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Yes, Report", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
+                                public void onClick(DialogInterface dialogInterface, int in) {
 
 
                                     ReportSpam reportSpam = new ReportSpam(dataList.get(i).getTitle(), dataList.get(i).getContributor(), dataList.get(i).getTimeStamp());
@@ -152,7 +152,7 @@ class ListAdapter extends BaseAdapter {
 
                             alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
+                                public void onClick(DialogInterface dialogInterface, int in) {
                                     alertDialog.dismiss();
                                 }
                             });
