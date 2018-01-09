@@ -1,92 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF"
-    android:orientation="vertical"
-
+    android:fillViewport="true"
+    android:scrollbars="none"
     android:padding="16dp"
     tools:context="spencerstudios.com.codespace.ContributeActivity">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/title_label"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:counterEnabled="true"
-        app:counterMaxLength="60">
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/et_title"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/title_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Title"
-            android:maxLength="80"
-            android:singleLine="true" />
+            app:counterEnabled="true"
+            app:counterMaxLength="60">
 
-    </android.support.design.widget.TextInputLayout>
+            <EditText
+                android:id="@+id/et_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Title"
+                android:maxLength="80"
+                android:singleLine="true" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/descr_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:counterEnabled="true"
-        app:counterMaxLength="150">
+        </android.support.design.widget.TextInputLayout>
 
-
-        <EditText
-            android:id="@+id/et_description"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/descr_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Short description"
-            android:maxLength="120"
-            android:singleLine="true" />
+            app:counterEnabled="true"
+            app:counterMaxLength="150">
 
-    </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/contribute_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:counterEnabled="true"
-        app:counterMaxLength="25">
+            <EditText
+                android:id="@+id/et_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Short description"
+                android:maxLength="120"
+                android:singleLine="true" />
 
-        <EditText
-            android:id="@+id/et_contribute"
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/contribute_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Contributor"
-            android:maxLength="25"
-            android:singleLine="true" />
+            app:counterEnabled="true"
+            app:counterMaxLength="25">
 
-    </android.support.design.widget.TextInputLayout>
+            <AutoCompleteTextView
+                android:id="@+id/et_contribute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contributor"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
+                android:nextFocusDown="@+id/et_link"/>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/link_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:counterEnabled="true"
-        app:counterMaxLength="200">
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/et_link"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/link_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Link"
-            android:maxLength="200"
-            android:singleLine="true" />
+            app:counterEnabled="true"
+            app:counterMaxLength="200">
 
-    </android.support.design.widget.TextInputLayout>
+            <EditText
+                android:id="@+id/et_link"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Link"
+                android:maxLength="200"
+                android:singleLine="true" />
 
+        </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:id="@+id/btn_submit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="PUBLISH"
-        android:textColor="#fff"
-        android:background="@color/colorPrimaryDark"
-        />
-</LinearLayout>
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="PUBLISH"
+            android:textColor="#fff" />
+
+    </LinearLayout>
+</ScrollView>

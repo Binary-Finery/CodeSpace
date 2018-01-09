@@ -135,16 +135,13 @@ class ListAdapter extends BaseAdapter {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int in) {
 
-
                                     ReportSpam reportSpam = new ReportSpam(dataList.get(i).getTitle(), dataList.get(i).getContributor(), dataList.get(i).getTimeStamp());
                                     myRef.child("report").push().setValue(reportSpam).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 FabToast.makeText(context, "thank you, this contribution has been successfully reported", FabToast.LENGTH_LONG, FabToast.SUCCESS, FabToast.POSITION_DEFAULT).show();
-                                            } else {
-                                                FabToast.makeText(context, "oops, something went wrong", FabToast.LENGTH_LONG, FabToast.ERROR, FabToast.POSITION_DEFAULT).show();
-                                            }
+                                            } else FabToast.makeText(context, "oops, something went wrong", FabToast.LENGTH_LONG, FabToast.ERROR, FabToast.POSITION_DEFAULT).show();
                                         }
                                     });
                                 }

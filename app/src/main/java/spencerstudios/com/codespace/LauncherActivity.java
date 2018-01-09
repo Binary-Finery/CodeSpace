@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -62,8 +63,7 @@ public class LauncherActivity extends AppCompatActivity implements SearchView.On
         temp.clear();
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef = database.getReference();
-        final DatabaseReference ref = myRef.child("data");
+        final DatabaseReference myRef = database.getReference(), ref = myRef.child("data");
 
         final ListAdapter listAdapter = new ListAdapter(LauncherActivity.this, dataArrayList);
         listView.setAdapter(listAdapter);
@@ -85,8 +85,7 @@ public class LauncherActivity extends AppCompatActivity implements SearchView.On
                 Collections.reverse(dataArrayList);
                 listView.setAdapter(new ListAdapter(LauncherActivity.this, dataArrayList));
 
-                if (swipeRefreshLayout.isRefreshing())
-                    swipeRefreshLayout.setRefreshing(false);
+                if (swipeRefreshLayout.isRefreshing()) swipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
@@ -102,6 +101,7 @@ public class LauncherActivity extends AppCompatActivity implements SearchView.On
 
         if (id==R.id.btn_contribute){
             startActivity(new Intent(LauncherActivity.this, ContributeActivity.class));
+            finish();
             Bungee.diagonal(LauncherActivity.this);
         }else{
             startActivity(new Intent(LauncherActivity.this, SavedLinksActivity.class));
@@ -110,10 +110,7 @@ public class LauncherActivity extends AppCompatActivity implements SearchView.On
     }
 
     @Override
-    public boolean onQueryTextSubmit(String query) {
-
-        return false;
-    }
+    public boolean onQueryTextSubmit(String query) {return false;}
 
     @Override
     public boolean onQueryTextChange(String query) {
