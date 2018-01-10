@@ -26,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Title"
+                android:inputType="textCapSentences"
                 android:maxLength="80"
                 android:singleLine="true" />
 
@@ -44,6 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Short description"
+                android:inputType="textCapSentences"
                 android:maxLength="120"
                 android:singleLine="true" />
 
@@ -61,6 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Contributor"
+                android:inputType="textCapWords"
                 android:singleLine="true"
                 android:imeOptions="actionNext"
                 android:nextFocusDown="@+id/et_link"/>
@@ -79,6 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Link"
+                android:inputType="textWebEditText"
                 android:maxLength="200"
                 android:singleLine="true" />
 
