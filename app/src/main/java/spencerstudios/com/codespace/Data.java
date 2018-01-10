@@ -3,8 +3,21 @@ package spencerstudios.com.codespace;
 
 class Data {
 
-    private String title, description, contributor, link;
+    private String title;
+    private String description;
+    private String contributor;
+    private String link;
+    private String key;
     private long timeStamp;
+
+    public Data(String description, String contributor, String link, long timeStamp, String title,String key) {
+        this.title = title;
+        this.description = description;
+        this.contributor = contributor;
+        this.link = link;
+        this.timeStamp = timeStamp;
+        this.key = key;
+    }
 
     public Data(String description, String contributor, String link, long timeStamp, String title) {
         this.title = title;
@@ -37,5 +50,13 @@ class Data {
 
     public long getTimeStamp() {
         return timeStamp;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

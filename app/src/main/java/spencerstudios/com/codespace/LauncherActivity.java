@@ -79,8 +79,9 @@ public class LauncherActivity extends AppCompatActivity implements SearchView.On
                     String contributor = (String)ds.child("contributor").getValue();
                     String link = (String)ds.child("link").getValue();
                     long timeStamp = (long)ds.child("timeStamp").getValue();
+                    String key = ds.getKey();
 
-                    dataArrayList.add(new Data(description, contributor, link, timeStamp, title));
+                    dataArrayList.add(new Data(description, contributor, link, timeStamp, title, key));
                 }
                 Collections.reverse(dataArrayList);
                 listView.setAdapter(new ListAdapter(LauncherActivity.this, dataArrayList));

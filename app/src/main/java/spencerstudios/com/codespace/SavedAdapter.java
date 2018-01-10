@@ -1,6 +1,7 @@
 package spencerstudios.com.codespace;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -83,7 +84,11 @@ class SavedAdapter extends BaseAdapter{
                     public boolean onMenuItemClick(MenuItem menuItem) {
 
                         if (menuItem.getTitle().equals(SHARE)) {
-
+                            Intent sendIntent = new Intent();
+                            sendIntent.setAction(Intent.ACTION_SEND);
+                            sendIntent.putExtra(Intent.EXTRA_TEXT, savedLinksDataArrayList.get(i).getLink());
+                            sendIntent.setType("text/plain");
+                            context.startActivity(sendIntent);
                         }
 
                         else if (menuItem.getTitle().equals(REMOVE)){
