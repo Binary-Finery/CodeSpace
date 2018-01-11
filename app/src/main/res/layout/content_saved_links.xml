@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="spencerstudios.com.codespace.SavedLinksActivity"
     tools:showIn="@layout/activity_saved_links">
@@ -11,7 +12,17 @@
     <ListView
         android:id="@+id/list_view_saved"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:divider="@null"/>
+
+    <TextView
+        android:id="@android:id/empty"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="@string/empty_list_text"/>
 
 </LinearLayout>

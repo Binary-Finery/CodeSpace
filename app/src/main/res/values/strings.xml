@@ -2,4 +2,5 @@
     <string name="app_name">Link Space</string>
     <string name="title_activity_launcher">Link Space</string>
     <string name="title_activity_saved_links">SavedLinksActivity</string>
+    <string name="empty_list_text">You have no saved links, your saved links will appear here</string>
 </resources>

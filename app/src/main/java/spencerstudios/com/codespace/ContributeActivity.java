@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
@@ -43,6 +44,11 @@ public class ContributeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
         sp = getSharedPreferences(AUTO, MODE_PRIVATE);
 
         autoList = getAuto();
@@ -57,7 +63,7 @@ public class ContributeActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView textView, int action, KeyEvent keyEvent) {
                 String str = etContribute.getText().toString();
-                if (action == EditorInfo.IME_ACTION_NEXT && str.length()>0){
+                if (action == EditorInfo.IME_ACTION_NEXT && str.length() > 0) {
                     if (!autoList.contains(str)) addAuto(str);
                 }
                 return false;
@@ -122,7 +128,7 @@ public class ContributeActivity extends AppCompatActivity {
         return l;
     }
 
-    private void addAuto(String item){
+    private void addAuto(String item) {
         ArrayList<String> modList = new ArrayList<>();
         try {
             JSONArray jsonArray = new JSONArray(sp.getString(AUTO_KEY, "[]"));
@@ -139,7 +145,19 @@ public class ContributeActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            returnHome();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     public void onBackPressed() {
+        returnHome();
+    }
+
+    private void returnHome() {
         startActivity(new Intent(ContributeActivity.this, LauncherActivity.class));
         finish();
         Bungee.zoom(ContributeActivity.this);
