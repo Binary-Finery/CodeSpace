@@ -32,6 +32,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.github.Binary-Finery:Bungee:master-SNAPSHOT'
     compile 'com.github.Binary-Finery:FabToast:1.0'
+    compile 'net.fredericosilva:showTipsView:1.0.4'
     testCompile 'junit:junit:4.12'
 }
 

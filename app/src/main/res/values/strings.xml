@@ -3,4 +3,6 @@
     <string name="title_activity_launcher">Link Space</string>
     <string name="title_activity_saved_links">SavedLinksActivity</string>
     <string name="empty_list_text">You have no saved links, your saved links will appear here</string>
+    <string name="info">Link Space is a simple resource hub for sharing useful links for all topics relating to Android and Java development</string>
+    <string name="btn_close">Got It</string>
 </resources>
